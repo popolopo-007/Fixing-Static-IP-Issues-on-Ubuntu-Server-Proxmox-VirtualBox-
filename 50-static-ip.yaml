@@ -1,0 +1,15 @@
+network:
+  version: 2  # Specifies the Netplan version
+  renderer: networkd  # Uses systemd-networkd as the network manager
+  ethernets:
+    enp0s3:  # Replace with your actual network interface name (check with `ip link show`)
+      addresses:
+        - 192.168.1.100/24  # Assigns a static IP address (192.168.1.100 with a subnet mask of 255.255.255.0)
+      routes:
+        - to: default  # Defines the default route (gateway)
+          via: 192.168.1.1  # Specifies the gateway (router) for network and internet access
+      nameservers:
+        addresses:
+          - 8.8.8.8  # Google DNS (can be changed as needed)
+          - 8.8.4.4  # Alternative Google DNS
+      dhcp4: no  # Disables DHCP to enforce a static IP configuration
